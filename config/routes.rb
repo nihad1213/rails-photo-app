@@ -11,4 +11,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :photos, only: %i[index show new create] do
+    post :send_email, on: :member
+  end
+  root "photos#index"
 end
