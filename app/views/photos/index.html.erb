@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">Photos</h1>
+  <%= link_to "Add a photo", new_photo_path, class: "btn btn-primary" %>
+</div>
+
+<% if @photos.empty? %>
+  <div class="alert alert-info">No photos yet. Add your first one!</div>
+<% else %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <% @photos.each do |photo| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <%= link_to photo do %>
+            <%= image_tag photo.image.variant(resize_to_fill: [400, 300]), class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title h6 mb-0"><%= photo.title %></h5>
+          </div>
+          <div class="card-footer bg-white border-0">
+            <%= link_to "Open", photo, class: "btn btn-sm btn-outline-primary w-100" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

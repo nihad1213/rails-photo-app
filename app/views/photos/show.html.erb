@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <%= image_tag @photo.image.variant(resize_to_limit: [900, 900]), class: "card-img-top" %>
+
+      <div class="card-body">
+        <h1 class="h4"><%= @photo.title %></h1>
+        <hr>
+
+        <h2 class="h6">Send by email</h2>
+        <%= form_with url: send_email_photo_path(@photo), method: :post do |f| %>
+          <div class="input-group">
+            <%= f.email_field :email, class: "form-control", placeholder: "friend@example.com", required: true %>
+            <%= f.submit "Send", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="card-footer bg-white">
+        <%= link_to "← Back to photos", photos_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
